@@ -18,7 +18,7 @@
 [CmdletBinding()]
 param([string]$Model = 'jev-latest')
 
-Import-Module (Join-Path $PSScriptRoot '..\JevClient.psm1') -Force
+Import-Module (Join-Path $PSScriptRoot '..\JevClient\JevClient.psd1') -Force
 $apiKey = Get-JevApiKey   # Get-Secret jev -> SecureString
 
 # One reviewed definition of the question - question wording is production logic.

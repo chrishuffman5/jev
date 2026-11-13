@@ -18,7 +18,7 @@
 [CmdletBinding()]
 param([string]$Model = 'jev-1.14.0')   # pin a model id for audited decisions
 
-Import-Module (Join-Path $PSScriptRoot '..\JevClient.psm1') -Force
+Import-Module (Join-Path $PSScriptRoot '..\JevClient\JevClient.psd1') -Force
 $apiKey = Get-JevApiKey
 
 $userGoal = 'Free up disk space on C: by cleaning temp files older than 7 days.'

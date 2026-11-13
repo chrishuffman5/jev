@@ -14,7 +14,7 @@
 [CmdletBinding()]
 param([string]$Model = 'jev-latest')
 
-Import-Module (Join-Path $PSScriptRoot '..\JevClient.psm1') -Force
+Import-Module (Join-Path $PSScriptRoot '..\JevClient\JevClient.psd1') -Force
 $apiKey = Get-JevApiKey
 
 $changeRequests = @(

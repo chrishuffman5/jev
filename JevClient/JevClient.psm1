@@ -44,13 +44,20 @@ function Get-JevApiKey {
     #>
     [CmdletBinding()]
     [OutputType([securestring])]
-    param([string]$SecretName = 'jev')
+    param(
+        [string]$SecretName = 'jev',
+        # Optional vault name. When omitted, SecretManagement searches the default vault first.
+        [string]$Vault
+    )
 
+    $params = @{ Name = $SecretName; ErrorAction = 'Stop' }
+    if ($Vault) { $params['Vault'] = $Vault }
     try {
-        $secret = Get-Secret -Name $SecretName -ErrorAction Stop
+        $secret = Get-Secret @params
     }
     catch {
-        throw "Could not read secret '$SecretName' from the SecretManagement vault: $($_.Exception.Message)"
+        $where = if ($Vault) { "vault '$Vault'" } else { 'the SecretManagement vaults' }
+        throw "Could not read secret '$SecretName' from ${where}: $($_.Exception.Message). If you use SecretStore, run Unlock-SecretStore and try again."
     }
     if ($secret -isnot [securestring]) {
         throw "Secret '$SecretName' is a [$($secret.GetType().Name)]; expected a SecureString."
@@ -297,11 +304,14 @@ function Show-JevResponse {
     .SYNOPSIS
         Pretty-prints every answer in a Jev response plus model / usage metadata.
     #>
-    param([Parameter(Mandatory)] $Response)
+    [CmdletBinding()]
+    param([Parameter(Mandatory, ValueFromPipeline)] $Response)
+    process {
     foreach ($p in $Response.answers.PSObject.Properties) { Show-JevAnswer -Name $p.Name -Answer $p.Value }
     $u = $Response.usage
     Write-Host ("  [model {0} | input {1} tok | output {2} tok | request {3}]" -f `
         $Response.model, $u.input_tokens, $u.output_tokens, $Response.requestId) -ForegroundColor DarkGray
+    }
 }
 
 #endregion
