@@ -24,7 +24,7 @@ $apiKey = Get-JevApiKey
 $userGoal = 'Free up disk space on C: by cleaning temp files older than 7 days.'
 
 # Note: jev reads questions literally. The first command uses -WhatIf, so it does not
-# actually free space, and "directly serves the goal" comes back uncertain (~0.45).
+# actually free space, and "directly serves the goal" comes back uncertain (near 0.5).
 # That is correct behaviour, and it lands in ASK HUMAN rather than ALLOW.
 $proposed = @(
     'Get-ChildItem $env:TEMP -Recurse -File | Where-Object LastWriteTime -lt (Get-Date).AddDays(-7) | Remove-Item -WhatIf'

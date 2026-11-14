@@ -340,14 +340,16 @@ Instructions and criteria values can also be **structured objects** instead of p
 
 The `examples\` folder has runnable scripts. Each one imports the module from the repo, so it works without installing anything.
 
-| Script | Question types | What it shows |
-|---|---|---|
-| `01-Choice-TicketRouting.ps1` | Choice | A complete option list with `other`, act/review/human bands, and a runner-up on a split decision |
-| `02-Score-BugSeverity.ps1` | Score | Rubric levels written as concrete situations, rounding, normalizing, thresholds scaled to the consequence, ranking |
-| `03-Noul-YesNoChecks.ps1` | Noul | Several yes/no checks in one call, true/false criteria, date math done in code |
-| `04-Mixed-FanOut.ps1` | All three | One state with many questions, a composite priority calculated in code, a consistency check across answers |
-| `05-Structured-ChangeRequest.ps1` | All three | Structured JSON in questions: ITIL change type, risk, and approval routing |
-| `06-Gating-ShellCommands.ps1` | Noul + Score | Jev as one layer of several: a deterministic deny-list, then jev, then a human. **Nothing is executed.** |
+| Script | Question types | What it shows | Sample output |
+|---|---|---|---|
+| `01-Choice-TicketRouting.ps1` | Choice | A complete option list with `other`, act/review/human bands, and a runner-up on a split decision | [view](examples/01-Choice-TicketRouting.output.md) |
+| `02-Score-BugSeverity.ps1` | Score | Rubric levels written as concrete situations, rounding, normalizing, thresholds scaled to the consequence, ranking | [view](examples/02-Score-BugSeverity.output.md) |
+| `03-Noul-YesNoChecks.ps1` | Noul | Several yes/no checks in one call, true/false criteria, date math done in code | [view](examples/03-Noul-YesNoChecks.output.md) |
+| `04-Mixed-FanOut.ps1` | All three | One state with many questions, a composite priority calculated in code, a consistency check across answers | [view](examples/04-Mixed-FanOut.output.md) |
+| `05-Structured-ChangeRequest.ps1` | All three | Structured JSON in questions: ITIL change type, risk, and approval routing | [view](examples/05-Structured-ChangeRequest.output.md) |
+| `06-Gating-ShellCommands.ps1` | Noul + Score | Jev as one layer of several: a deterministic deny-list, then jev, then a human. **Nothing is executed.** | [view](examples/06-Gating-ShellCommands.output.md) |
+
+The sample outputs are real runs captured against `jev-1.14.0`. Your probabilities may differ slightly.
 
 ```powershell
 .\examples\01-Choice-TicketRouting.ps1
