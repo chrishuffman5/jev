@@ -19,6 +19,8 @@ $r.answers.urgent.noul        # P(yes), 0..1
 
 The module is designed to drop into the PowerShell you already have: scheduled tasks, triage scripts, CSV pipelines and approval workflows. Your code keeps control flow, math and thresholds. Jev answers the narrow judgment calls inside it.
 
+**Training deck:** [chrishuffman5.github.io/jev](https://chrishuffman5.github.io/jev/) introduces decision models and walks through the examples in this repo with real outputs. The deck's source is [`JevDecisionModelsTraining.html`](JevDecisionModelsTraining.html).
+
 ---
 
 ## Contents
